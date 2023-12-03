@@ -40,11 +40,12 @@ selector.addEventListener('change', event => {
   loader.style.display = 'block';
   fetchCatByBreed(breedID)
     .then(cats => {
-      const html = cats.map(cat => {
-        return `<img class="img" src= "${cat.url}" width = "500"/><h2 class="title">${cat.name}</h2>
+      const html = (placeForCats.innerHTML = cats
+        .map(cat => {
+          return `<img class="img" src= "${cat.url}" width = "500"/><h2 class="title">${cat.name}</h2>
         <p class="paragraph">${cat.description}</p>`;
-      });
-      html = placeForCats.innerHTML = html.join('');
+        })
+        .join(''));
     })
     .finally(() => {
       loader.style.display = 'none';
