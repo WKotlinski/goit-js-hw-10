@@ -6,13 +6,5 @@ axios.defaults.headers.common['x-api-key'] =
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
 
 export function fetchBreeds() {
-  return axios
-    .get('/breeds')
-    .then(({ data }) => data)
-    .catch(error => {
-      Notiflix.Report.failure(
-        'Error',
-        'Oops! Something went wrong! Try reloading the page!'
-      );
-    });
+  return axios.get('/breeds').then(({ data }) => data);
 }

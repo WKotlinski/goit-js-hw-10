@@ -12,12 +12,19 @@ loader.textContent = '';
 loader.style.display = 'none';
 loader.style.scale = '1';
 
-fetchBreeds().then(data => {
-  const markup = data.map(
-    breed => `<option value = "${breed.id}">${breed.name}</option>`
-  );
-  selector.innerHTML = markup;
-});
+fetchBreeds()
+  .then(data => {
+    const markup = data.map(
+      breed => `<option value = "${breed.id}">${breed.name}</option>`
+    );
+    selector.innerHTML = markup;
+  })
+  .catch(error => {
+    Notiflix.Report.failure(
+      'Error',
+      'Oops! Something went wrong! Try reloading the page!'
+    );
+  });
 
 function fetchCatByBreed(breedId) {
   return axios
