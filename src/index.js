@@ -13,7 +13,7 @@ loader.style.scale = '1';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_M2UMVGz6TcRyTntJu0JrQf4YGt8mUG96gdT00mgawOxrRIM3CyRbLs4IR1fNiq4U';
-axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
+axios.defaults.baseURL = 'https://api.tdhecatapi.com/v1';
 
 function fetchBreeds() {
   return axios
