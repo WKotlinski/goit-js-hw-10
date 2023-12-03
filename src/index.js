@@ -9,6 +9,7 @@ const errorSpan = document.querySelector('.error');
 errorSpan.textContent = '';
 loader.textContent = '';
 loader.style.display = 'none';
+loader.style.scale = '1';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_M2UMVGz6TcRyTntJu0JrQf4YGt8mUG96gdT00mgawOxrRIM3CyRbLs4IR1fNiq4U';
@@ -37,15 +38,14 @@ function fetchCatByBreed(breedId) {
 
 selector.addEventListener('change', event => {
   const breedID = event.target.value;
+  placeForCats.innerHTML = '';
   loader.style.display = 'block';
   fetchCatByBreed(breedID)
     .then(cats => {
-      const html = (placeForCats.innerHTML = cats
-        .map(cat => {
-          return `<img class="img" src= "${cat.url}" width = "500"/><h2 class="title">${cat.name}</h2>
-        <p class="paragraph">${cat.description}</p>`;
-        })
-        .join(''));
+      const html = cats.map(cat => {
+        return `<img width="600" height="400" src="${cats[0].url}" class="cat-img"></img><h2 class="cat-name">${cats[0].breeds[0].name}</h2><p class=""description">${cats[0].breeds[0].description}</p>`;
+      });
+      placeForCats.innerHTML = html.join('');
     })
     .finally(() => {
       loader.style.display = 'none';
