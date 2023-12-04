@@ -11,8 +11,6 @@ errorSpan.textContent = '';
 loader.textContent = '';
 loader.style.display = 'none';
 loader.style.scale = '1';
-placeForCats.style.width = '100px';
-placeForCats.style.border = '5px dashed red';
 
 fetchBreeds()
   .then(data => {
