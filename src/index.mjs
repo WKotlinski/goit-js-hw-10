@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import { fetchBreeds } from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const selector = document.querySelector('.breed-select');
 const placeForCats = document.querySelector('.cat-info');
@@ -11,6 +11,8 @@ errorSpan.textContent = '';
 loader.textContent = '';
 loader.style.display = 'none';
 loader.style.scale = '1';
+placeForCats.style.width = '100px';
+placeForCats.style.border = '5px dashed red';
 
 fetchBreeds()
   .then(data => {
@@ -25,12 +27,6 @@ fetchBreeds()
       'Oops! Something went wrong! Try reloading the page!'
     );
   });
-
-function fetchCatByBreed(breedId) {
-  return axios
-    .get(`images/search?breed_ids=${breedId}`)
-    .then(({ data }) => data);
-}
 
 selector.addEventListener('change', event => {
   const breedID = event.target.value;
