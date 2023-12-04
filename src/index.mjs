@@ -26,9 +26,7 @@ fetchBreeds()
       'Oops! Something went wrong! Try reloading the page!'
     );
   });
-const slimSelecor = new SlimSelect({
-  select: '.breed-select',
-});
+
 selector.addEventListener('change', event => {
   const breedID = event.target.value;
   placeForCats.innerHTML = '';
