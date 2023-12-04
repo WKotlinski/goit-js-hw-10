@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import SlimSelect from 'slim-select';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
 const selector = document.querySelector('.breed-select');
 const placeForCats = document.querySelector('.cat-info');
@@ -25,7 +26,9 @@ fetchBreeds()
       'Oops! Something went wrong! Try reloading the page!'
     );
   });
-
+const slimSelecor = new SlimSelect({
+  select: '.breed-select',
+});
 selector.addEventListener('change', event => {
   const breedID = event.target.value;
   placeForCats.innerHTML = '';
@@ -36,6 +39,13 @@ selector.addEventListener('change', event => {
         return `<img width="600" height="400" src="${cats[0].url}" class="cat-img"></img><h2 class="cat-name">${cats[0].breeds[0].name}</h2><p class=""description">${cats[0].breeds[0].description}</p>`;
       });
       placeForCats.innerHTML = html.join('');
+    })
+    .catch(error => {
+      Notiflix.Report.failure;
+      Notiflix.Report.failure(
+        'Error',
+        'Oops! Something went wrong! Try reloading the page!'
+      );
     })
     .finally(() => {
       loader.style.display = 'none';
